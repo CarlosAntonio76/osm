@@ -6,7 +6,11 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
-    path('', include('osm.urls')),
-    path('autenticacao/', include('autenticacao.urls')),
     path('admin/', admin.site.urls),
+    path('', include('osm.urls')),
+    path('auth/', include('autenticacao.urls')),
 ]
+# Opcao para mostrar imagens
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
