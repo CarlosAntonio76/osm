@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Categorias{% endblock %}
+
+{% block 'body' %}
+
+
+    {% if messages %}
+        <br>
+        {% for message in messages %}
+            <div class="alert {{message.tags}}">
+                {{message}}
+            </div>
+        {% endfor %}
+    {% endif %}
+      <br>
+      <br>
+      <br>
+
+
+        <section class="cabeca">
+            <h2 class="h2_produtos">Listagem de Categorias</h2>
+            <a href="#abrir" class="addcategoria">+Adicionar</a>
+            <a href="#"><button class="btn_gera_pdf_categori">Gerar PDF</button></a>
+            {{ datas }}
+        </section>
+
+    <br>
+
+    <!-- Filtros de pesquisas -->
+    
+    <form class="cadcategoria" action="#" method="POST">{% csrf_token %}
+        <div class="filtros">
+
+            <h2> Filtrar por:</h2>
+            
+            <div class="filtro_todos">
+                <label class="lbl_filtros" for="todas">Todas.:</label>
+                <input class="input_filtros" id="todas"
+                type="checkbox"
+                name="status"
+                value="T" {% if 'T' in selected_status %} checked="checked"{% endif %}>
+            </div>
+
+            <div class="filtro_ativos">
+                <label class="lbl_filtros" for="ativas">Ativas.:</label>
+                <input class="input_filtros" id="ativas"
+                type="checkbox"
+                name="status"
+                value="A" {% if 'A' in selected_status %} checked="checked"{% endif %}>
+            </div>
+
+            <div class="filtro_inativos">
+                <label class="lbl_filtros" for="inativas">Inativas.:</label>
+                <input class="input_filtros" id="inativas"
+                type="checkbox"
+                name="status" 
+                value="I" {% if 'I' in selected_status %} checked="checked"{% endif %}>
+            </div>
+
+            <div id="pesquisar_cat">
+                <button class="btn_pesquisa_cat" type="submit">Pesquisar...</button>
+            </div>
+
+        </div>
+    </form>
+
+       
+        <!--
+        <h3 class="lbl_filtrar"> Filtrar por:</h3>
+        <a href="{% url 'categoria' %}?ativo_inativo" class="btn_limpafiltro">Limpar Filtro</a>
+        <a href="{% url 'categoria' %}?ativo_inativo=True" class="btn_ativo">Ativo</a>
+        <a href="{% url 'categoria' %}?ativo_inativo=False" class="btn_inativo">Inativo</a>
+       -->
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Descrição</th>
+                    <th>Ativo?</th>
+                    <th>Ação</th>
+
+                </tr>
+            </thead> 
+            <tbody>
+                {% for categoria in object_list %}
+                <tr>
+                    <td>
+                        {{ categoria.id }}
+                    </td>
+                    <td>
+                        <a href="{% url 'mensagem' %}"> {{ categoria.categoria }}</a>
+                    </td>
+
+                    {% if categoria.ativo  %}
+                        <td><img src="{% static '/autenticacao/img/sim1.png' %}" alt="imgs" style="width: 30px; height:auto;"></td>
+                    {% else %}
+                        <td><img src="{% static '/autenticacao/img/falso1.png' %}" alt="imgs" style="width: 30px; height:auto;"></td>
+                    {% endif %}
+
+                    <td>
+                        <input type="checkbox" name="selected_cat" value={{categoria.id}} class="action-select">
+                    </td>
+               </tr>
+                {% endfor %}
+                
+            </tbody>
+        </table>
+       
+
+{% endblock %}
+

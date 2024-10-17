@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Fornecedores{% endblock %}
+
+{% block 'body' %}
+
+<br>
+<h2 class="h2_produtos">Lista de Fornecedores</h2>
+<a href="#abrir" class="adc">+Adicionar</a>
+
+<!-- ################################################### -->
+
+    <div id="box-busca">
+        <form class="buscarr" action="{% url 'index' %}" method="GET">
+                                  
+          <input class="campo-busca" name="busca" type="text" value="{{request.GET.busca}}" placeholder="Faça sua busca">
+           {% if request.GET.busca %}
+             <a class="linkreset" href="{% url 'busca' %}">Reset</a>
+           {% endif %}
+
+          <button type="submit" class="btn-busca"> <i class="icon icon-search"> </i>Buscar</button> 
+        </form>
+    </div><br>
+
+    <table class="table"> 
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome Fornecedor</th>
+                <th>CNPJ Fornecedor</th>
+                <th>Endereço</th>
+                <th>Telefone</th>
+                <th>Email</th>
+            </tr>
+        </thead> 
+        <tbody>
+            {% for fab in fabricas %}
+            <tr>
+                <td>
+                    {{ fab.id }}
+                </td>
+                <td>
+                    <a href="{% url 'mensagem' %}"> {{ fab.nome_fabrica }}</a>
+                </td>
+                <td>{{ fab.cnpj_fabrica }}</td>
+                <td>{{ fab.endereco_fabrica }}</td>
+                <td>{{ fab.telefone_fabrica }}</td>
+                <td>{{ fab.email_fabrica }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table> 
+
+   
+    <!-- MODAL CADASTRO DE FABRICAS -->
+
+    <div class="container2" id="abrir">
+        <div class="modal-corpo">
+            <a href="#" class="fechar">X</a>
+            <form class="telcadastro">
+                <label for="descricao">Descrição</label>
+                <input type="text" name="descricao" placeholder="Descricao...."/>
+                <br><br>
+                <label for="unidade">Unidade</label>
+                <input type="text" name="unidade" placeholder="Unidade..."/>
+                <br><br>
+                <label for="fabrica">Fábrica</label>
+                <input class="fornec" type="number" name="fabrica" required="1"/>
+                <br>
+                <hr>
+                <br>
+                <label for="tipo">Tipo</label>
+                <input type="text" name="tipo"/>
+                <br>
+                <button class="btnsalvar">Salvar</button>
+                <button class="btnalterar">Alterar</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- {% include 'pagination.html' %}  -->
+
+
+{% endblock %}
+

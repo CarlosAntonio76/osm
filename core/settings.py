@@ -38,7 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'autenticacao.apps.AutenticacaoConfig'
+    'autenticacao.apps.AutenticacaoConfig',
+    'osm.apps.OsmConfig',
+    'categoria.apps.CategoriaConfig',
+    'produto.apps.ProdutoConfig',
+    'fabrica.apps.FabricaConfig',
 ]
 
 MIDDLEWARE = [
@@ -82,7 +86,7 @@ DATABASES = {
         'HOST': '127.0.0.1',
         'PORT': '3306',
         'USER': 'root',
-        'PASSWORD': 'cajb20041976',
+        'PASSWORD': 'Cajb20041976',
     }
 }
 
@@ -155,7 +159,5 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "carlosantoniodapaixao@gmail.com"
-EMAIL_HOST_PASSWORD = "ijvwtnoonutsyeuy"
-#EMAIL_HOST_PASSWORD = "ijvw tnoo nuts yeuy"
-#EMAIL_HOST_PASSWORD = "lpktlnlrzuuujaox"
+EMAIL_HOST_PASSWORD = "lpktlnlrzuuujaox"
 #EMAIL_HOST_PASSWORD = "kiygvuiaecjbzdzb"

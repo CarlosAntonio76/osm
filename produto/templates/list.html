@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Produtos{% endblock %}
+
+{% block 'body' %}
+
+<br>
+<h2 class="h2_produtos">Lista de Produtos</h2>
+<a href="#abrir" class="adc">+Adicionar</a>
+
+<!-- ##################################################################################### -->
+
+    <div id="box-busca">
+        <form class="buscarr" action="{% url 'index' %}" method="GET">
+                                  
+          <input class="campo-busca" name="busca" type="text" value="{{request.GET.busca}}" placeholder="Faça sua busca">
+           {% if request.GET.busca %}
+             <a class="linkreset" href="{% url 'busca' %}">Reset</a>
+           {% endif %}
+
+          <button type="submit" class="btn-busca"> <i class="icon icon-search"> </i>Buscar</button> 
+        </form>
+    </div><br>
+
+    <div class="containert">
+
+        <table class="table"> 
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Descrição</th>
+                    <th>Unidade</th>
+                    <th>Data de Cadastro</th>
+                    <th>Reservado</th>
+                </tr>
+            </thead> 
+            <tbody>
+                {% for produto in page_obj %}
+                <tr>
+                    <td>
+                        {{ produto.id }}
+                    </td>
+                    <td>
+                        <a href="{% url 'mensagem' %}"> {{ produto.descricao }}</a>
+                    </td>
+                    <td>{{ produto.unidade }}</td>
+                    <td>{{ produto.data }}</td>
+                    <td>{{ produto.reservado }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table> 
+    </div>
+
+   
+       <!-- MODAL CADASTRO DE PRODUTOS -->
+
+    <div class="container2" id="abrir">
+        <div class="modal-corpo">
+            <a href="#" class="fechar">X</a>
+            <form class="telcadastro">
+                <label for="descricao">Descrição</label>
+                <input type="text" name="descricao" placeholder="Descricao...."/>
+                <br><br>
+                <label for="unidade">Unidade</label>
+                <input type="text" name="unidade" placeholder="Unidade..."/>
+                <br><br>
+                <label for="fabrica">Fábrica</label>
+                <input class="fornec" type="number" name="fabrica" required="1"/>
+                <br>
+                <hr>
+                <br>
+                <label for="tipo">Tipo</label>
+                <input type="text" name="tipo"/>
+                <br>
+                <button class="btnsalvar">Salvar</button>
+                <button class="btnalterar">Alterar</button>
+            </form>
+        </div>
+    </div>
+    
+    {% include 'pagination.html' %} 
+
+
+       
+{% endblock %}
+

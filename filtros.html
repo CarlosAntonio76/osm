@@ -1,0 +1,66 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<input rel="natureza" type="checkbox" value="Produtos">Produtos
+<input rel="natureza" type="checkbox" value="Auto">AutoUtilizados
+<br/><br/><br/>
+
+<table>
+    <caption>Tabela</caption>
+    <thead>
+        <tr class="first">
+            <th>Product Number</th>
+            <th>Status</th>
+            <th>Capacity</th>
+            <th>Speed</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Memory1</td>
+            <td>Shipping</td>
+            <td>1GB</td>
+            <td class="natureza" rel="Auto">AutoUtilizados</td>
+        </tr>
+        <tr>
+            <td>Memory2</td>
+            <td>Discontinued</td>
+            <td>2GB</td>
+            <td class="natureza" rel="Produtos">Produtos</td>
+        </tr>
+        <tr>
+            <td>Memory3</td>
+            <td>Shipping</td>
+            <td>2GB</td>
+            <td class="natureza" rel="Auto">AutoUtilizados</td>
+        </tr>
+        <tr>
+            <td>Memory4</td>
+            <td>Discontinued</td>
+            <td>4GB</td>
+            <td class="natureza" rel="Auto">AutoUtilizados</td>
+        </tr>
+        <tr>
+            <td>Memory5</td>
+            <td>Shipping</td>
+            <td>4GB</td>
+            <td class="natureza" rel="Produtos">Produtos</td>
+        </tr>
+    </tbody>
+
+<script>
+$("input:checkbox").click(function () {
+    var showAll = true;
+    $('tr').not('.first').hide();
+    $('input[type=checkbox]').each(function () {
+        if ($(this)[0].checked) {
+            showAll = false;
+            var status = $(this).attr('rel');
+            var value = $(this).val();            
+            $('td.' + status + '[rel="' + value + '"]').parent('tr').show();
+        }
+    });
+    if(showAll){
+        $('tr').show();
+    }
+});
+
+</script>

@@ -9,6 +9,9 @@
 </head>
 <body>
     <main>
+
+       
+
         <div class="menulateral">
             <div class="textomenu">
                 <h4>AMJOCABE Ordem de Serviços</h4>
@@ -18,38 +21,50 @@
                 <img src="{% static 'autenticacao/img/amjocabe.png' %}" alt="Logo_menu_login">
             </div>
 
-                <div class="rodape">
+            <div class="rodape">
                 <p> AMJOCABE - &copy; 2024 - ✟ Todos os Direitos Reservados. - AMJOCABE WEB</p>
-                </div>
+            </div>
         </div>
+
+        {% if messages %}
+            <br>
+            {% for message in messages %}
+                <div class="alert {{message.tags}}">
+                    {{message}}
+                </div>
+            {% endfor %}
+        {% endif %}   
 
         <!-- Lado direito login -->
         <div class="centro">
+
             <div class="logoempresa">
                 <img class="img2" src="{% static 'autenticacao/img/amjocabe.png' %}" alt="Logo empresa desenvolvedora">
-                <p class="textop">
-                    ORDERM SERVIÇO <span>AQUI</span>
-                </p>
             </div>
+
+            <p class="texto_ordemservico">
+                ORDERM SERVIÇO <span>AQUI</span>
+            </p>
+
             <div class="titulologin">
                 <h3>LOGIN</h3>
             </div>
 
             <div class="area_cadastrar">
-                {% if messages %}
-            <br>
-                {% for message in messages %}
-                    <div class="alert {{message.tags}}">
-                        {{message}}
-                    </div>
-                {% endfor %}
-              {% endif %}
+                <p class="saudacao">{{ msg }}</p>
+                <h2 class="titulo_sejabemvindo">Seja bem vindo</h2>
 
-            <div class="inputs">  
-                <form action="{% url 'login' %}" method="POST">
-                    {% csrf_token %}  
+                <h4 class="hoje_e">Hoje é.: {{ nome_semana }}</h4>
+
+                <p class="sub_titulo_entreconta">Entre com sua conta</p>
+                <hr>
+            </div>
+            
+
+            <form class="cadusuarios" action="{% url 'login' %}" method="POST">{% csrf_token %}
+                <div class="inputs">    
                     <label for="usuario">Usuário</label>
-                    <input type="text" max-width="200px" name="usuario"  placeholder="Usuário" autofocus="" required="" maxlength="10">
+                    <input type="text" max-width="200px" name="usuario"  placeholder="Usuário" autofocus="" required="" maxlength="15">
                     <br>
                     <br>
                     <label for="senha">Senha</label>
@@ -57,12 +72,12 @@
                     <br>
                     <br>
                     <button>« ENTRAR »</button>
-                    <br>
-                </form>
 
-                <div class="recsenha">
-                    <a href="#">Esqueci minha Senha</a>
+                    <div class="recsenha">
+                        <a href="#">Esqueci minha Senha</a>
+                    </div>
                 </div>
+            </form>
 
                 <div class="textoredesocial">
                     <p>Siga nas redes sociais</p>
@@ -75,10 +90,7 @@
 
                 <div class="imgyoutube">
                     <a href="#"> <img src="{% static 'autenticacao/img/youtube.png' %}" alt="Logo whatsapp"></a>
-                </div>
-
-            </div>
-                
+                </div>   
         </div>
     </main>
 </body>

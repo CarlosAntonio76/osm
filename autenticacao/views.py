@@ -3,14 +3,17 @@ from django.http import HttpResponse
 from . utils import password_is_valid, email_html
 from django.shortcuts import redirect, get_object_or_404
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from django.contrib.messages import constants
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
 from django.contrib import auth
 import os
 from django.conf import settings
 from .models import Ativacao
 from hashlib import sha256
+from datetime import date, datetime
+from datetime import time
+    
 
 
 
@@ -21,14 +24,23 @@ def cadastro(request):
         return render(request, 'cadastro.html')
     elif request.method == "POST":
         username = request.POST.get('usuario')
-        email = request.POST.get('email')
         senha = request.POST.get('senha')
+        email = request.POST.get('email')
         confirmar_senha = request.POST.get('confirmar_senha')
 
         if User.objects.filter(username=username):
             messages.add_message(request, constants.WARNING, f"Usuário {username}, já existe!")
             return redirect('/auth/cadastro')
-        
+
+        existeemail = User.objects.filter(email=email)
+        if existeemail:
+            messages.add_message(request, constants.WARNING, f"Este email {email}, já existe!")
+            return redirect('/auth/cadastro')
+
+        if not password_is_valid(request, senha, confirmar_senha):
+            print('Conferindo as senhas: ' ,senha, confirmar_senha)
+            return redirect('/auth/cadastro')
+   
         try:
             user = User.objects.create_user(username=username,
                                             email=email,
@@ -44,7 +56,8 @@ def cadastro(request):
             email_html(path_template, 'Cadastro confirmado', [email,], username=username, link_ativacao=f"http://127.0.0.1:8000/auth/ativar_conta/{token}")
 
             messages.add_message(request, constants.SUCCESS, "Usuário salvo com sucesso!")
-            messages.add_message(request, constants.SUCCESS, "Link de ativação enviado para e-mail cadastrado.")
+            messages.add_message(request, constants.SUCCESS, "Link enviando para o e-mail cadastrado")
+
             return redirect('/auth/login')
             
         except Exception as e:
@@ -53,25 +66,45 @@ def cadastro(request):
             return redirect('/auth/cadastro')
 
 
-def ativar_conta(request, token):
-    token = get_object_or_404(Ativacao, token=token)
-    if token.ativo:
-        messages.add_message(request, constants.WARNING, 'Esse token já foi usado')
-        return redirect('/auth/cadastro')
-    user = User.objects.get(username=token.user.username)
-    user.is_active = True
-    user.save()
-    token.ativo = True
-    token.save()
-    messages.add_message(request, constants.SUCCESS, 'Conta ativa com sucesso')
-    return redirect('/auth/login')
-
-
 def login(request):
     if request.method == "GET":
+        import locale
+        import datetime
+        import time
+        locale.setlocale(locale.LC_ALL, 'pt_BR.utf8')
+
+        hora = time.strftime("%H:%M")
+        dia_semana = datetime.datetime.today().weekday()
+        msg = ""
+        nome_semana = ""
+
+        if hora >= "1" and hora < "12":
+            msg = 'Bom dia!'
+        elif hora>= "12" and hora < "18":
+            msg = 'Boa tarde!'
+        elif (hora>"18" and hora<="24") or hora=="0":
+            msg = 'Boa noite!'
+
+
+        if dia_semana == 0:
+            nome_semana = "Segunda-Feira"
+        elif dia_semana == 1:
+            nome_semana = "Terça-Feira"
+        elif dia_semana == 2:
+            nome_semana = "Quarta-Feira"
+        elif dia_semana == 3:
+            nome_semana =  "Quinta-Feira"
+        elif dia_semana == 4:
+            nome_semana = "Sexta-Feira"
+        elif dia_semana == 5:
+            nome_semana = "Sábado"
+        elif dia_semana == 6:
+            nome_semana =  "Domingo"
+
         if request.user.is_authenticated:
-            return redirect('/')
-        return render(request, 'login.html')
+            return redirect('/') # era index
+        return render(request, 'login.html', {'msg': msg, 'nome_semana': nome_semana})
+
     elif request.method == "POST":
         username = request.POST.get('usuario')
         senha = request.POST.get('senha')
@@ -80,17 +113,18 @@ def login(request):
 
         if not usuario:
             messages.add_message(request, constants.ERROR, 'Username ou senha inválidos')
-            return redirect('/auth/login/')
+            print('Teste senhas: ', senha)
+            return redirect('/auth/login')
         else:
             auth.login(request, usuario)
-            messages.add_message(request, constants.ERROR, 'Teste Logado com sucesso!')
-            return redirect('/auth/cadastro/')
-
+            print('deucerto')
+            return redirect('/')
+        
 
 def ativar_conta(request, token):
     token = get_object_or_404(Ativacao, token=token)
     if token.ativo:
-        messages.add_message(request, constants.WARNING, 'Essa token já foi usado')
+        messages.add_message(request, constants.WARNING, 'Este token já foi usado')
         return redirect('/auth/login')
     user = User.objects.get(username=token.user.username)
     user.is_active = True
@@ -100,6 +134,9 @@ def ativar_conta(request, token):
     messages.add_message(request, constants.SUCCESS, 'Conta ativa com sucesso')
     return redirect('/auth/login')
 
+
+    
 def sair(request):
     auth.logout(request)
     return redirect('/auth/login')
+

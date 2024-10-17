@@ -1,0 +1,59 @@
+{% load static %}
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    {% block 'head' %}{% endblock  %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static '/autenticacao/css/estilo.css' %}">
+    <link rel="stylesheet" href="{% static '/autenticacao/css/stilomodal.css' %}">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
+
+
+     
+  <title>{% block 'titulo' %}{% endblock  %}</title>
+  </head>
+  <body>
+    {% if user.is_authenticated %}
+    <header>
+     <nav>
+        <div class="container">
+            <div class="logo">
+                <p>OSM - <span class="nome_u">Usuário.:</span> { <span class="fonte-azul">{{ user }}</span> } - </p>
+                <span class="mostra_data_hora">{{ datas }}</span>
+            </div>
+
+            <ul>
+                <li><a href="{% url 'dashboard'%}">Inicio</a></li>
+                <li><a href="">Clientes</a></li>
+                <li><a href="{% url 'fabrica'%}">Fábrica</a></li>
+                <li><a href="{% url 'categoria'%}">Categorias</a></li>
+                <li><a href="{% url 'produtos'%}">Produtos</a></li>
+                <li><a href="">Orçamento</a></li>
+                <li><a href="">Login</a></li>
+                <li>
+                    <button>
+                        <a href="">Inscreva-se</a>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+      
+	</header>
+
+    {% endif %}
+ 
+
+    {% block 'body' %}{% endblock  %}
+
+    
+  
+  </body>
+</html>

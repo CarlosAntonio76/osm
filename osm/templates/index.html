@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block 'body' %}
+
+
+
+<br>
+<h2 class="h2_produtos">Lista de Produtos</h2>
+
+
+<!--
+<div id="box-busca">
+  <form action="{% url 'busca' %}" method="GET">                       
+    <input class="campo-busca" name="busca" type="text" value="{{request.GET.busca}}" placeholder="Faça sua Busca ?">
+     {% if request.GET.busca %}
+     <a class="linkbusca" href="{% url 'busca' %}">Reset</a>
+     {% endif %}
+    <button type="submit" class="btn-busca"> <i class="icon icon-search"> </i> </button>
+  </form>
+</div> -->
+
+
+<!--
+<label class="pesq" for="pesquisa">Pesquisar ➪</label>
+<input class="pesquisa" type="text" max-width="200px" name="pesquisa"  placeholder="Pesquisa" autofocus="" required="" maxlength="20">
+<br>
+-->
+
+<br>
+<table class="table">
+
+   <!-- <h3 class="centra">carlos</h3> -->
+
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Descrição</th>
+        <th>Unidade</th>
+        <th>Data de Cadastro</th>
+        <th>Reservado</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for produto in page_obj %}
+      <tr>
+          <td>{{ produto.id }}</td>
+          <td>{{ produto.descricao }}</td>
+          <td>{{ produto.unidade }}</td>
+          <td>{{ produto.data }}</td>
+          <td>{{ produto.reservado }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+</table>
+
+{% include 'pagination.html' %}
+
+
+  {%endblock%}
+  
+  
+  
+
+
+
+

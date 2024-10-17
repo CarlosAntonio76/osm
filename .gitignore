@@ -1,5 +1,3 @@
-# Arquivos e pastas a serem ignoradas
-/venv
+# Arquivos ignorados
+venv/
 venv
-db*
-db.sqlite3

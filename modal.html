@@ -1,0 +1,76 @@
+<!--Inicio botão chama-->
+<div class="sub-menu-1">
+  <ul>
+    <li><a href="../Diário de obras/relatorio.html">Relatório</a></li>
+    <li><a href="../Diário de obras/colaborador.html">Colaborador</a></li>
+    <li><a href="" onclick="event.preventDefault();abrirModal('modal1')">Obra</a></li>
+  </ul>
+</div>
+<!--fim botão que chama-->
+
+
+<!--inicio modal-->
+<div id="modal1" class="modal" style="display: none;">
+  <div class="modal-dialog">
+    <form action="#" method="#">
+      <div id="title">
+        <h1 id="title-form">Cadastro nova obra</h1>
+      </div><br><br>
+      <div class="container-form center colaborador">
+        <div>
+          <label>Contratante</label><br>
+          <input class="input_form" type="text" name="name" value="">
+        </div>
+        <div class="inputbox" type="text" name="email" value="">
+          <label>Consolidadora</label><br>
+          <select>
+            <option value="">Tramo Equipamentos LTDA NE</option>
+            <option value="">Tramo LTDA</option>
+            <option value="">Tramo Serviços</option>
+            <option value="">Tramo Painéis </option>
+            <option value="">Tramo Engenharia</option>
+          </select>
+        </div>
+        <div>
+          <label>Previsão de começo</label><br>
+          <input class="input_form" type="date" name="login" value="" required>
+        </div>
+        <div>
+          <label>Responsável</label><br>
+          <input class="input_form" type="password" name="password">
+        </div><br>
+      </div>
+      <div>
+        <label>Tarefas a desenvolver</label><br>
+        <textarea class="input_form" type="textarea" name="telefone" value=""></textarea>
+      </div>
+      <div>
+        <button class="send-buttons" name="#" value="#"> enviar </button>
+        <button onclick="fecharModal('modal1')" class="cancel-buttons" name="#" value="#"> cancelar </button>
+      </div>
+    </form>
+  </div>
+</div>
+<!--fim modal-->
+
+
+
+
+<script>
+//abrir modal
+function abrirModal(id) {
+  modal = document.getElementById(id);
+  if (modal.style.display === "none") {
+    modal.style.display = "block";
+  }
+
+}
+
+// função fechar modal
+function fecharModal(id) {
+  modal = document.getElementById(id);
+  if (modal.style.display = "block") {
+    modal.style.display = "none";
+  }
+}
+</script>

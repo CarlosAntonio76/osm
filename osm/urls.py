@@ -1,4 +1,3 @@
-from django.urls import path
 from xml.dom.minidom import Document
 from django.contrib import admin
 from django.urls import path, include
@@ -8,6 +7,6 @@ from .import views as v
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', v.teste, name='teste'),
+    path('', v.dashboard, name='dashboard'),
+    path('dashboard/', v.dashboard, name='dashboard'), 
 ]

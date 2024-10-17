@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+
+<br>
+<h2 class="h2_produtos">Lista de Produtos</h2>
+
+
+
+<!--
+<label class="pesq" for="pesquisa">Pesquisar ➪</label>
+<input class="pesquisa" type="text" max-width="200px" name="pesquisa"  placeholder="Pesquisa" autofocus="" required="" maxlength="20">
+<br>
+-->
+
+<br>
+<table class="table">
+
+   <!-- <h3 class="centra">carlos</h3> -->
+
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Descrição</th>
+        <th>Unidade</th>
+        <th>Data de Cadastro</th>
+        <th>Reservado</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for produto in contatos %}
+      <tr>
+          <td>{{ produto.id }}</td>
+          <td>{{ produto.descricao }}</td>
+          <td>{{ produto.unidade }}</td>
+          <td>{{ produto.data }}</td>
+          <td>{{ produto.reservado }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+</table>
+

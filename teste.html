@@ -1,0 +1,8 @@
+<form action="{% url 'funcao_da_view' %}" method="post">
+    {% csrf_token %}
+    {%for var in vars%}
+        <input type="checkbox" name="resp" 
+        value="{{var.variavel}}">-Checkbox 1<br>
+    {%endfor%}
+    <input type="submit" value="Enviar">
+</form>
