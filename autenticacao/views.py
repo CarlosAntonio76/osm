@@ -13,7 +13,8 @@ from .models import Ativacao
 from hashlib import sha256
 from datetime import date, datetime
 from datetime import time
-    
+from pacotesutil import mostrar_nome_semana as mns  
+
 
 
 
@@ -73,10 +74,16 @@ def login(request):
         import time
         locale.setlocale(locale.LC_ALL, 'pt_BR.utf8')
 
+        nsn = mns.MostrarNomeSemana()
+        exibir_semana = mns.MostrarNomeSemana()
+        
+        print(exibir_semana.nome_semana[nsn.numero_semana])
+
+        exibir_nome_semana = nsn.nome_semana[nsn.numero_semana]
+
+
         hora = time.strftime("%H:%M")
-        dia_semana = datetime.datetime.today().weekday()
         msg = ""
-        nome_semana = ""
 
         if hora >= "1" and hora < "12":
             msg = 'Bom dia!'
@@ -86,24 +93,10 @@ def login(request):
             msg = 'Boa noite!'
 
 
-        if dia_semana == 0:
-            nome_semana = "Segunda-Feira"
-        elif dia_semana == 1:
-            nome_semana = "Terça-Feira"
-        elif dia_semana == 2:
-            nome_semana = "Quarta-Feira"
-        elif dia_semana == 3:
-            nome_semana =  "Quinta-Feira"
-        elif dia_semana == 4:
-            nome_semana = "Sexta-Feira"
-        elif dia_semana == 5:
-            nome_semana = "Sábado"
-        elif dia_semana == 6:
-            nome_semana =  "Domingo"
-
         if request.user.is_authenticated:
             return redirect('/') # era index
-        return render(request, 'login.html', {'msg': msg, 'nome_semana': nome_semana})
+        return render(request, 'login.html', {'msg': msg, 'nome_semana': exibir_nome_semana,
+                                              'nsemana': exibir_semana})
 
     elif request.method == "POST":
         username = request.POST.get('usuario')
