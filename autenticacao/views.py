@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.messages import constants
 from django.contrib import messages
 from django.contrib import auth
+from django.contrib.auth import logout
 import os
 from django.conf import settings
 from .models import Ativacao
@@ -77,8 +78,7 @@ def login(request):
         nsn = mns.MostrarNomeSemana()
         exibir_semana = mns.MostrarNomeSemana()
         
-        print(exibir_semana.nome_semana[nsn.numero_semana])
-
+        nsemana = exibir_semana.nome_semana[nsn.numero_semana]
         exibir_nome_semana = nsn.nome_semana[nsn.numero_semana]
 
 
@@ -96,7 +96,7 @@ def login(request):
         if request.user.is_authenticated:
             return redirect('/') # era index
         return render(request, 'login.html', {'msg': msg, 'nome_semana': exibir_nome_semana,
-                                              'nsemana': exibir_semana})
+                                              'nsemana': nsemana})
 
     elif request.method == "POST":
         username = request.POST.get('usuario')
@@ -112,7 +112,13 @@ def login(request):
             auth.login(request, usuario)
             print('deucerto')
             return redirect('/')
-        
+       
+   
+
+def sair(request):
+    auth.logout(request)
+    return redirect('/auth/login')
+
 
 def ativar_conta(request, token):
     token = get_object_or_404(Ativacao, token=token)
@@ -127,9 +133,4 @@ def ativar_conta(request, token):
     messages.add_message(request, constants.SUCCESS, 'Conta ativa com sucesso')
     return redirect('/auth/login')
 
-
-    
-def sair(request):
-    auth.logout(request)
-    return redirect('/auth/login')
 
