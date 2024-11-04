@@ -8,6 +8,7 @@ from .import views as v
 
 urlpatterns = [
     path('categorias/', v.categoria, name='categoria'),
+    path('excluicategoria/<int:id>/', v.excluicategoria, name='excluicategoria'),
     #path('excluircategoria/<int:id>/', v.excluircategoria, name='excluircategoria'),
 ]
 

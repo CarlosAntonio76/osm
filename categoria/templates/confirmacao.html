@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Categorias{% endblock %}
+
+{% block 'body' %}
+
+
+    {% if messages %}
+        <br>
+        {% for message in messages %}
+            <div class="alert {{message.tags}}">
+                {{message}}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+      <br>
+        
+        <section id="exclui-categorias">
+            
+            {% if messages %}
+                <br>
+                {% for message in messages %}
+                    <div class="alert {{message.tags}}">
+                        {{message}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <form action="" method="POST">{% csrf_token %}
+                <h2 class="texto-exclui">Exclusão de categorias</h2>
+                <p class="confirma_exclusao">
+                    Confirma exclusão desta categoria ?
+                </p>
+                <br>
+                <br>
+                <ul>
+                    <li class="lili">
+                        <span class="nome-categoria-excluir">{{ categoria }}</span>
+                    </li>
+                </ul>
+                <br>
+                <br>
+                <br>
+                <button class="btn-excluir" type="submit">Excluir</button>
+                <a href="{% url 'categoria' %}"><button class="btn-voltar">Cancelar</button></a>
+            </form>
+        </section>
+    <br>
+    {% endblock %}
+

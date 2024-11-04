@@ -6,6 +6,9 @@ from django.contrib import messages
 from django.contrib.messages import constants
 from datetime import date, datetime
 from datetime import time
+import os
+from django.conf import settings
+
     
 
 def categoria(request):
@@ -57,8 +60,9 @@ def categoria(request):
          object_list = object_list.all()
     
     if status ==[]:
-         messages.add_message(request, constants.ERROR, 'Sem dados para serem exibidos! - Selecione um Filtro')
-         object_list = object_list.none()
+         #messages.add_message(request, constants.ERROR, 'Sem dados para serem exibidos! - Selecione um Filtro')
+         #object_list = object_list.none()
+         object_list = object_list.all()   
 
 
     if status == ['T']:
@@ -74,3 +78,16 @@ def categoria(request):
     print(status)
 
     return render(request, template_name, object_list)
+
+
+
+def excluicategoria(request, id):
+    categoria = Categoria.objects.get(id=id)
+    if request.method == "POST":
+        categoria.delete()
+        messages.add_message(request, constants.SUCCESS, 'Categoria excluida com sucesso!')
+        return redirect('categoria')
+    template_name = "confirmacao.html"
+    categoria = {"categoria": categoria}
+    return render(request, template_name, categoria)
+

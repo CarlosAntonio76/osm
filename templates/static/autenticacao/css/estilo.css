@@ -9,6 +9,7 @@
     --vermelho:  #f80404;
     --violeta: rgb(214, 5, 241);
     --verde-escuro: rgb(10, 102, 51);
+    --preto: rgb(14, 13, 13);
 
 }
 
@@ -85,6 +86,7 @@ nav ul li button:hover a {
     color: var(--cinza-escuro);
 }
 
+
 .menulateral {
     position: absolute;
     float: left;
@@ -92,8 +94,9 @@ nav ul li button:hover a {
     width: 25%;
     background-color: var(--verde-escuro);
     /*background-color: #411E5A !important; */
-    margin: 0 auto;
+    margin: 0 auto; 
 }
+
 /* Responsivo */
 @media(min-width: 300px) and (max-width: 900px){
     .menulateral {
@@ -145,12 +148,20 @@ img {
     position: absolute;
     bottom: 8px;
     left: 5%;
+    text-align: center;
     color: white;
     font-family: "NeoSansPro-Regular", Verdana, sans-serif;
     font-size: 0.8rem;
     font-weight: 400;
-    line-height: 1.5;
+    line-height: 2; /* Altura */
 }
+@media only screen and (max-width: 767px) {
+    .rodape {
+        display: none;
+    }
+}
+
+
 
 /* Centro / labels / inputs */
 .centro {
@@ -948,4 +959,44 @@ li{
     color: rgb(17, 114, 17);
     font-size: 1.2rem;
     font-weight: bold;;
+}
+
+#exclui-categorias{
+    position: absolute;
+    border: 1px;
+    background-color: var(--branco);
+    width: 50%;
+    height: 30%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);    
+}
+#exclui-categorias .texto-exclui{
+    background-color: var(--vermelho);
+    font-size: 2rem;
+    color: var(--branco);
+}
+
+#exclui-categorias .confirma_exclusao{
+    font-size: 2.5rem;
+    color: var(--preto);
+}
+#exclui-categorias .nome-categoria-excluir{
+    font-size: 2rem;
+    justify-content: center;
+    color: var(--violeta);
+}
+
+#exclui-categorias .btn-excluir{
+    width: 12%;
+    font-size: 2rem;
+    border: 0;
+    border-radius: 6px;
+    background-color: var(--vermelho);
+    box-shadow: 2px 2px 5px rgba(51, 51, 51, 0.3);
+    cursor: pointer;
+}
+.lili{
+    list-style: inside;
+    font-size: 2.8rem;
 }

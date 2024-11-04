@@ -101,7 +101,7 @@
                     {% endif %}
 
                     <td>
-                        <input type="checkbox" name="selected_cat" value={{categoria.id}} class="action-select">
+                      <a href=" {% url 'excluicategoria' categoria.id %} "> Excluir</a>
                     </td>
                </tr>
                 {% endfor %}
