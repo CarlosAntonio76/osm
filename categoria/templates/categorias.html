@@ -101,7 +101,8 @@
                     {% endif %}
 
                     <td>
-                      <a href=" {% url 'excluicategoria' categoria.id %} "> Excluir</a>
+                        <button><a href="#">Alterar</a></button>&nbsp;&nbsp;
+                        <button><a class="btnex" href="{% url 'excluicategoria' categoria.id %}">Excluir</a></button>
                     </td>
                </tr>
                 {% endfor %}

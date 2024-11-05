@@ -55,14 +55,15 @@ def categoria(request):
     if request.method=='POST':
          status = request.POST.getlist('status')
          object_list = object_list.all()
-    
+
+
     if status ==['T', 'A', 'I']:
          object_list = object_list.all()
     
     if status ==[]:
          #messages.add_message(request, constants.ERROR, 'Sem dados para serem exibidos! - Selecione um Filtro')
          #object_list = object_list.none()
-         object_list = object_list.all()   
+         object_list = object_list.all()
 
 
     if status == ['T']:

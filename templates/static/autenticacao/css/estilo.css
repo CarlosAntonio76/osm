@@ -6,7 +6,8 @@
     --cinza-claro: #f2f2f2ff;
     --branco: #ffffff;
     --verde: rgb(10, 141, 69);
-    --vermelho:  #f80404;
+    --vermelho: #f80404;
+    --vermelho-claro: #b34848;
     --violeta: rgb(214, 5, 241);
     --verde-escuro: rgb(10, 102, 51);
     --preto: rgb(14, 13, 13);
@@ -963,8 +964,9 @@ li{
 
 #exclui-categorias{
     position: absolute;
-    border: 1px;
-    background-color: var(--branco);
+    border: 1px transparent;
+    border-radius: 10px;
+    background-color: var(--cinza-claro);
     width: 50%;
     height: 30%;
     top: 50%;
@@ -972,31 +974,72 @@ li{
     transform: translate(-50%, -50%);    
 }
 #exclui-categorias .texto-exclui{
+    position: relative;
     background-color: var(--vermelho);
     font-size: 2rem;
     color: var(--branco);
 }
 
 #exclui-categorias .confirma_exclusao{
+    position: relative;
+    top: 2px;
     font-size: 2.5rem;
     color: var(--preto);
 }
 #exclui-categorias .nome-categoria-excluir{
-    font-size: 2rem;
-    justify-content: center;
+    position: relative;
+    top: 4px;
+    left: 15px;
+    font-size: 2.5rem;
+    list-style: inside;
     color: var(--violeta);
 }
 
 #exclui-categorias .btn-excluir{
-    width: 12%;
+    position: absolute;
+    top: 120px;
+    left: 5px;
+    width: 90px;
+    height: 45px;
     font-size: 2rem;
     border: 0;
     border-radius: 6px;
     background-color: var(--vermelho);
-    box-shadow: 2px 2px 5px rgba(51, 51, 51, 0.3);
+    color: var(--branco);
+    box-shadow: 2px 2px 5px rgba(179, 235, 147, 0.3);
     cursor: pointer;
 }
-.lili{
-    list-style: inside;
-    font-size: 2.8rem;
+#exclui-categorias .btn-excluir:hover{
+    background-color: var(--vermelho-claro);
+    transition: all 0.4s;
+}
+#exclui-categorias .btn-voltar{
+    position: absolute;
+    top: 120px;
+    left: 100px;
+    width: 90px;
+    height: 45px;
+    font-size: 2rem;
+    border: 0;
+    border-radius: 6px;
+    background-color: var(--azul-escuro);
+    box-shadow: 2px 2px 5px rgba(248, 247, 247, 0.3);
+    text-decoration: none;
+    cursor: pointer;
+}
+#exclui-categorias .btn-voltar:hover{
+    background-color: var(--azul-medio);
+    transition: all 0.4s;
+
+}
+#exclui-categorias .btn-voltar a{
+    text-decoration: none;
+    color: var(--branco);
+}
+.btnex{
+    font-size: 10px;
+    font-weight: bold;
+    text-decoration: none;
+    border: none;
+    color: var(--vermelho);
 }
