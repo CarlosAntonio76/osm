@@ -1,0 +1,40 @@
+{% load static %}
+
+    {% if messages %}
+        <br>
+        <div class="container-mensagem">
+           {% for message in messages %}
+            <div class="alert {{message.tags}}">
+                {{message}}
+            </div>
+                {% endfor %}
+            </div>
+            </div>
+        </div>
+    {% endif %}
+
+
+<style>
+    .container-mensagem{
+        visibility: hidden;
+    }
+    .container-mensagem:target{
+        visibility: visible;
+        opacity: 1;
+    }
+    .container-mensagem{
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,.6);
+    }
+    .alert{
+       top: 60rem;
+       width: 50%;
+       height: 30%;
+       background-color: rgb(240, 68, 68);
+       color: white;
+ }
+</style>

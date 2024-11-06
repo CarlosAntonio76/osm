@@ -6,18 +6,11 @@
 {% block 'body' %}
 
 
-    {% if messages %}
-        <br>
-        {% for message in messages %}
-            <div class="alert {{message.tags}}">
-                {{message}}
-            </div>
-        {% endfor %}
-    {% endif %}
+{% include "parciais/_mensagens.html" %}
+   
       <br>
       <br>
       <br>
-
 
         <section class="cabeca">
             <h2 class="h2_produtos">Listagem de Categorias</h2>
@@ -68,11 +61,11 @@
 
        
         <!--
-        <h3 class="lbl_filtrar"> Filtrar por:</h3>
-        <a href="{% url 'categoria' %}?ativo_inativo" class="btn_limpafiltro">Limpar Filtro</a>
-        <a href="{% url 'categoria' %}?ativo_inativo=True" class="btn_ativo">Ativo</a>
-        <a href="{% url 'categoria' %}?ativo_inativo=False" class="btn_inativo">Inativo</a>
-       -->
+            <h3 class="lbl_filtrar"> Filtrar por:</h3>
+            <a href="{% url 'categoria' %}?ativo_inativo" class="btn_limpafiltro">Limpar Filtro</a>
+            <a href="{% url 'categoria' %}?ativo_inativo=True" class="btn_ativo">Ativo</a>
+            <a href="{% url 'categoria' %}?ativo_inativo=False" class="btn_inativo">Inativo</a>
+        -->
 
         <table class="table">
             <thead>

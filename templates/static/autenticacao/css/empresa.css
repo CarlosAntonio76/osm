@@ -1,0 +1,136 @@
+.titulo{
+
+    color: #7D2948;
+    font-weight: bold;
+
+}
+
+.paragrafo{
+    font-size: 25px;
+}
+
+.btn-orange{
+
+    background-color: #ED8554;
+    color: white;
+}
+
+label{
+    font-weight: bold;
+}
+
+.box-vagas{
+
+    width: 400px;
+    margin-top: 60px;
+    background-color: #EDE6E6;
+}
+
+.header-vagas{
+    background-color: #7D2948;
+    padding: 15px;
+    color: white
+}
+
+.body-vagas{
+    padding: 15px;
+}
+
+.paragrafo-orange{
+    color: #ED8554;
+}
+
+
+.area{
+    background-color: rgb(169,t 157, 247);
+    color: white;
+}
+
+.message{
+    background-color: #e78ffF20;
+    border-left: 6px solid #b87219;
+    border-right: 30px solid #b87219;
+
+}
+.sucess{
+    background: rgb(164, 233, 164);
+}
+
+
+
+.messageerro{
+    background-color: #df98f320;
+    border-left: 6px solid #b87219;
+    border-right: 30px solid #b87219;
+
+}
+
+.msgerro{
+    background: rgb(240, 110, 110);
+}
+
+
+
+/* Alerta Erro
+----------------------------------------------- */
+/* Geral */
+
+.alerta {
+    width: 440px;
+    height: 180px;
+    line-height: 1px; /* estava 100px */
+    text-align: left;
+    color: white;
+    position: absolute;
+
+    top: 35%; /* posiciona na metade da tela */
+    margin-top: -100px; /* e retrocede metade da altura */
+    left: 35%; /* posiciona na metade da tela */
+    margin-left: -100px; /* e retrocede metade da largura */
+
+    padding: 1px;
+        border: 2px solid; /* gray */
+        border-radius: 3px;
+        margin: 10px;
+        font-size: 16px; /* Fonte texto da janela da mensagem 16px */
+
+
+}
+.error {
+    position: relative;
+        border-color: #c5bff3;
+        color: rgb(243, 2, 2);
+        background-color: rgb(247, 226, 226);
+
+}
+.sucesso {
+    position: relative;
+        border-color: #87c940;
+        color: #FFF;
+        background-color: #c6d6b3;
+}
+.atencao {
+        border-color: #f4a911;
+        color: #FFF;
+        background-color: #f6bb42;
+}
+.info {
+        border-color: #2f80e7;
+        color: #FFF;
+        background-color: #5d9cec;
+}
+
+.btn-closes{
+    position: relative;
+    display: inline-block;
+    width: 2px;
+    height: 2px;
+    padding: 5px 10px;
+    background-color: white;
+}
+
+.btn-closes:hover{
+  transition: all 0.1s;
+  background-color: rgb(199, 92, 92);
+
+}

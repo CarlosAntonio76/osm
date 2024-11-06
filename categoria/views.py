@@ -61,9 +61,9 @@ def categoria(request):
          object_list = object_list.all()
     
     if status ==[]:
-         #messages.add_message(request, constants.ERROR, 'Sem dados para serem exibidos! - Selecione um Filtro')
-         #object_list = object_list.none()
-         object_list = object_list.all()
+         messages.add_message(request, constants.ERROR, 'Sem dados para serem exibidos! - Selecione um Filtro')
+         object_list = object_list.none()
+         #object_list = object_list.all()
 
 
     if status == ['T']:
