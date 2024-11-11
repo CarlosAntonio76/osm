@@ -31,7 +31,10 @@
                     <th>Descrição</th>
                     <th>Unidade</th>
                     <th>Data de Cadastro</th>
+                    <th>Preço Venda</th>
+                    <th>Estoque</th>
                     <th>Reservado</th>
+                    <th>Ação</th>
                 </tr>
             </thead> 
             <tbody>
@@ -45,7 +48,22 @@
                     </td>
                     <td>{{ produto.unidade }}</td>
                     <td>{{ produto.data }}</td>
+                    <td>{{ produto.preco }}</td>
+
+                    {% if produto.estoque <= 0 %}
+                        <td class="estoque-negativo">{{ produto.estoque }}</td>
+                    {% else %}
+                        <td class="estoque-positivo">{{ produto.estoque }}</td>
+                    {% endif %}
+
                     <td>{{ produto.reservado }}</td>
+
+                    <td>
+                        <a href="#">Detalhes</a>&nbsp;&nbsp;
+                        <a href="#">Alterar</a>&nbsp;&nbsp;
+                        <a class="btnex" href="#">Excluir</a>
+                    </td>
+                
                 </tr>
                 {% endfor %}
             </tbody>

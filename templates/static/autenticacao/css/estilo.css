@@ -1043,3 +1043,11 @@ li{
     border: none;
     color: var(--vermelho);
 }
+
+/* Verifica estoque negativo */
+.estoque-positivo{
+    color: var(--azul-escuro)
+}
+.estoque-negativo{
+    color: var(--vermelho)
+}

@@ -41,10 +41,12 @@ class Produtos(models.Model):
      unidade = models.CharField(max_length=2, choices=choices_unidade, default='UN')
      fabrica = models.ForeignKey(Fabrica, on_delete=models.CASCADE, blank=True, null=True)
      preco = models.DecimalField(max_digits=6, decimal_places=2)
+     estoque = models.IntegerField(blank=True, null=True)
      #ncm = models.ForeignKey(Ncm, on_delete=models.CASCADE)
      reservado = models.CharField(max_length=10)
      mostrar = models.BooleanField(default=True)
      usuario = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+
 
 
      class Meta:

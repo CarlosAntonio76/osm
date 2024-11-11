@@ -5,8 +5,6 @@
 
 {% block 'body' %}
 
-
-{% include "parciais/_mensagens.html" %}
    
       <br>
       <br>
@@ -20,6 +18,9 @@
         </section>
 
     <br>
+
+    {% include "parciais/_mensagens.html" %}
+
 
     <!-- Filtros de pesquisas -->
     
@@ -74,10 +75,12 @@
                     <th>Descrição</th>
                     <th>Ativo?</th>
                     <th>Ação</th>
+                    <th>Outros</th>
 
                 </tr>
             </thead> 
             <tbody>
+
                 {% for categoria in object_list %}
                 <tr>
                     <td>
@@ -92,11 +95,16 @@
                     {% else %}
                         <td><img src="{% static '/autenticacao/img/falso1.png' %}" alt="imgs" style="width: 30px; height:auto;"></td>
                     {% endif %}
+                    
+                    <td>
+                        Reservado
+                    </td>
 
                     <td>
                         <button><a href="#">Alterar</a></button>&nbsp;&nbsp;
                         <button><a class="btnex" href="{% url 'excluicategoria' categoria.id %}">Excluir</a></button>
                     </td>
+                    
                </tr>
                 {% endfor %}
                 
